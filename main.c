@@ -416,6 +416,43 @@ int main()
                 // Maceraya atil.
             } else if (islem == 5) {
                 // Seviye atla.
+
+                if (tecrubePuani == 100) {
+
+                    int beceriyukseltme;
+                    printf("\nTebrikler!! Seviye atladiniz.\n");
+                    printf("\n--- Beceriler ---\n1. Guc = %d\n2. Ceviklik = %d\n3. Dayaniklilik = %d\n4. Karizma = %d\n5. Toplayicilik = %d\n\n",guc,ceviklik,dayaniklilik,karizma,toplayicilik);
+                    tecrubePuani=0;
+
+                    for(int i=0;i<5;i++) {
+                        printf("%d. olarak yukseltilecek beceriyi giriniz: ",i+1);
+                        if(scanf("%d",&beceriyukseltme) == 1){
+
+                            if (beceriyukseltme == 1) {
+                                guc++;
+                            } else if (beceriyukseltme == 2) {
+                                ceviklik++;
+                            } else if (beceriyukseltme == 3) {
+                                dayaniklilik++;
+                            } else if (beceriyukseltme == 4) {
+                                karizma++;
+                            } else if (beceriyukseltme == 5) {
+                                toplayicilik++;
+                            } else {
+                                printf("Gecersiz beceri secimi, lutfen 1 ile 5 arasinda bir deger giriniz.\n");
+                                i--;
+                            }
+                        } else {
+                            printf("Hatali islem secildi.\n");
+                            while (getchar() != '\n'); // Karakter girildiginde girilen yanlis ifadeler bellekten temizlenir
+                            i--;
+                        }
+                    }
+                    printf("\nYukseltme gerceklestirildi. Becerilerin yeni degerleri: \n1. Guc = %d\n2. Ceviklik = %d\n3. Dayaniklilik = %d\n4. Karizma = %d\n5. Toplayicilik = %d\n\n",guc,ceviklik,dayaniklilik,karizma,toplayicilik);
+
+                } else {
+                    printf("Tecrube puani yeterli degil!!!\n");
+                }
             } else if (islem == 6) {
                 // Durumu goster.
 
