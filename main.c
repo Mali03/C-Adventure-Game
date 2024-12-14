@@ -11,7 +11,7 @@ int main()
     int islem = 0, altislem = 0, satinalinacakislem = 0;
 
     // Karakterin ozellikleri tanimlanir
-    char ad[30], calgi[30];
+    char ad[30], calgi[30], intihar, eminmi;
 
     // Karakterin temel nitelikleri tanimlanir
     int can = 100, tokluk = 100, uyku = 100, hijyen = 100, suDoygunlugu = 100, mentalSaglik = 100, mutluluk = 100; // [0,100] araliginda degisir
@@ -23,7 +23,7 @@ int main()
     int guc = 3, ceviklik = 3, dayaniklilik = 3, karizma = 3, toplayicilik = 3; // [0,25] araliginda degisir
 
     // Macera degiskenleri tanimlanir
-    int altin = 10, tecrubePuani = 0;
+    int altin = 10, tecrubePuani = 0, tur = 0, gun = 1;
 
     srand(time(NULL)); // rastgele degerler olusturmak icin kullanilir
 
@@ -40,7 +40,49 @@ int main()
     printf("\n1. Kamp alanina git.\n2. Sifahaneye git.\n3. Hana git.\n4. Maceraya atil.\n5. Seviye atla.\n6. Durumu goster.\n\n7. Oyundan cik.\n\n");
 
     while (can > 0) {
-        printf("Yapilacak islemi giriniz: ");
+        if (tur == 4) {
+            gun++;
+        }
+
+        if (tur == 8) {
+            mentalSaglik -= 20;
+            mutluluk -= 10;
+
+            printf("\n2 gun boyunca uyumadigin icin mental sagligin %d/100 oldu.\n",mentalSaglik);
+        }
+
+        if (tur == 12) {
+            mentalSaglik -= 30;
+            mutluluk -= 20;
+
+            printf("\n3 gun boyunca uyumadigin icin mental sagligin %d/100 oldu.\n",mentalSaglik);
+
+        }
+
+        if (tur == 16) {
+            mentalSaglik = 10;
+            mutluluk -= 30;
+
+            printf("\n4 gun boyunca uyumadigin icin mental sagligin 10/100 oldu.\n");
+        }
+
+        if (mentalSaglik == 0 || mutluluk == 0) {
+            printf("Mental sagligin 0'a dustu. Intihar etmek ister misin? (e/h)");
+
+            scanf(" %c",&intihar);
+            if (intihar == 'e') {
+                printf("\nIntihar edildi.\n\n");
+                break;
+            } else {
+                if (mentalSaglik == 0)
+                    mentalSaglik += 10;
+                else
+                    mutluluk += 10;
+                continue;
+            }
+        }
+
+        printf("Yapilacak islemi giriniz (Gun: %d): ",gun);
 
         if (scanf("%d",&islem) == 1) {
             if (islem == 1) {
@@ -256,6 +298,9 @@ int main()
                             int kazanilan = 10 + (int)(karizma*hijyen/100.0);
                             tecrubePuani += 20;
                             altin += kazanilan;
+                            mentalSaglik += 10;
+                            mutluluk += 8;
+                            uyku -= 15;
                             printf("Tebrikler!!! Handa sarki soyleyerek insanlari etkilemeyi basardin! Handaki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 20\nToplam altin miktari: %d\n\n",(int)(karizma*hijyen/100.0),kazanilan,altin);
                         }
                     } else if (altislem == 4)
@@ -273,16 +318,14 @@ int main()
             } else if (islem == 6) {
                 // Durumu goster.
             } else if (islem == 7) {
-                char eminmi;
-
                 printf("Program sonlanacak. Emin misiniz?\n\ne -> evet\nh -> hayir\n");
                 scanf(" %c",&eminmi);
 
-                    if (eminmi == 'e') {
-                        printf("\nProgramdan sonlandiriliyor...\n\n");
-                        break;
-                    } else
-                        continue;
+                if (eminmi == 'e') {
+                    printf("\nProgramdan sonlandiriliyor...\n\n");
+                    break;
+                } else
+                    continue;
             } else
                 printf("Hatali islem secildi.\n");
         } else {
@@ -290,6 +333,7 @@ int main()
             while (getchar() != '\n'); // Karakter girildiginde girilen yanlis ifadeler bellekten temizlenir
         }
 
+        tur++;
     }
 
     printf("Program sonlandirildi.");
