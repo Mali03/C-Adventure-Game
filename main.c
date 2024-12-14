@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+//TODO bogulma ihtimali
+
 int main()
 {
     // Gerekli tanimlamalar yapilir
@@ -62,12 +64,10 @@ int main()
                 printf("\nCok susuz oldugun icin canin %d azalarak %d oldu!!!\n",gunSonuKayip_suDoygunlugu,can);
             }
 
-
             if (mentalSaglik == 0) {
                 can -= gunSonuKayip_mentalSaglik;
                 printf("\nMental sagligin cok kotu oldugun icin canin %d azalarak %d oldu!!!\n",gunSonuKayip_mentalSaglik,can);
             }
-
 
             if (mutluluk == 0) {
                 can -= gunSonuKayip_mutluluk;
@@ -122,17 +122,52 @@ int main()
             if (islem == 1) {
                 // Kamp alanina git.
 
-                    printf("1. Kamp atesinin basinda calgi cal/sarki soyle.\n2. Nehirde yikan.\n3. Cadirina girip uyu.\n\n4. Koy meydanina don.");
-                    printf("Kamp alaninda yapilacak islemi giriniz: ");
+                printf("1. Kamp atesinin basinda calgi cal/sarki soyle.\n2. Nehirde yikan.\n3. Cadirina girip uyu.\n\n4. Koy meydanina don.\n\n");
+                printf("Kamp alaninda yapilacak islemi giriniz: ");
 
-                    if (scanf("%d",&altislem) == 1) {
-                        if (altislem == 1) {
-
+                if (scanf("%d",&altislem) == 1) {
+                    if (altislem == 1) {
+                        if (hijyen <= 20)
+                            printf("Hijyen seviyen 20 ve alti oldugu icin kamp atesinin basinda sarki soyleyemezsin. (Hijyen seviyen: \"%d\")\n\nKoy meydanina geri donuldu.\n\n", hijyen);
+                        else if (uyku <= 20) {
+                            printf("Uyku seviyen cok dusuk oldugu icin sarki soylemeye halin yok.\nUyku seviyen: %d/100\n\nKoy meydanina geri donuldu.\n\n",uyku);
+                        } else {
+                            // Kamp atesinde sarki soylendi
+                            int kazanilan = 8 + (int)(karizma*hijyen/100.0);
+                            tecrubePuani += 15;
+                            altin += kazanilan;
+                            mentalSaglik += 9;
+                            mutluluk += 7;
+                            uyku -= 10;
+                            karizma += 1;
+                            printf("Tebrikler!!! Kamp atesinde %s ile calgi calip sarki soyleyerek insanlari etkilemeyi basardin! Kamp atesindeki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 15\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",calgi,(int)(karizma*hijyen/100.0),kazanilan,altin);
                         }
                     } else {
-                        printf("Hatali islem secildi.\n");
-                        while (getchar() != '\n'); // Karakter girildiginde girilen yanlis ifadeler bellekten temizlenir
+                        int olasilik = rand()%20+1; // [1,20] arasinda
+
+                        if (olasilik == 1) {
+                            printf("\n\nNehirde yikanmaya calisirken boguldun ve kimse seni kurtaramadi!!!\n\n");
+                            can = 0;
+                        } else {
+                            if (hijyen == 100) {
+                                printf("\n\nHijyen seviyen zaten full tekrar yikanamazsin.\n\nKoy meydanina geri donuldu.\n\n");
+                            } else {
+                                hijyen = 100;
+                                printf("\nNehirde yikanarak hijyen seviyeni fulledin.\n\nKoy meydanina geri donuldu.\n\n");
+                            }
+                        }
                     }
+                } else if (altsecim == 3) {
+                    if (uyku == 100) {
+                        printf("\n\nUykun olmadigi icin uyuyamadin.\n\nKoy meydanina geri donuldu.\n\n");
+                    } else {
+                        uyku = 100;
+                        printf("\n\nCadirinda misil misil uyuyarak uykunu fulledin.\n\nKoy meydanina geri donuldu.\n\n");
+                    }
+                } else {
+                    printf("Hatali islem secildi.\n");
+                    while (getchar() != '\n'); // Karakter girildiginde girilen yanlis ifadeler bellekten temizlenir
+                }
             } else if (islem == 2) {
                 // Sifahaneye git.
                 if (can == 100)
@@ -154,8 +189,7 @@ int main()
                                 printf("Yaralarin sarildi. Can degeri tekrardan 100 oldu.\n");
                                 printf("Toplam altin miktari: %d\n\n",altin);
                                 printf("Koy meydanina donuluyor...\n\n");
-                            }
-                            else {
+                            } else {
                                 can+=30;
                                 altin-=60;
                                 hijyen-=5;
@@ -368,7 +402,7 @@ int main()
                             mutluluk += 8;
                             uyku -= 15;
                             karizma += 1;
-                            printf("Tebrikler!!! Handa %s ile sarki soyleyerek insanlari etkilemeyi basardin! Handaki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 20\nToplam altin miktari: %d\n\n",calgi,(int)(karizma*hijyen/100.0),kazanilan,altin);
+                            printf("Tebrikler!!! Handa %s ile sarki soyleyerek insanlari etkilemeyi basardin! Handaki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 20\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",calgi,(int)(karizma*hijyen/100.0),kazanilan,altin);
                         }
                     } else if (altislem == 4)
                         printf("Koy meydanina geri donuldu.\n\n");
@@ -403,7 +437,7 @@ int main()
         tur++;
     }
 
-    printf("Program sonlandirildi.");
+    printf("Program sonlandirildi. ");
 
     if (can <= 0)
         printf("%s ozani hayatini kaybetti...",ad);
