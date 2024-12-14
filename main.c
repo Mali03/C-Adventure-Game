@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-//TODO bogulma ihtimali
-
 int main()
 {
     // Gerekli tanimlamalar yapilir
@@ -157,7 +155,7 @@ int main()
                             }
                         }
                     }
-                } else if (altsecim == 3) {
+                } else if (altislem == 3) {
                     if (uyku == 100) {
                         printf("\n\nUykun olmadigi icin uyuyamadin.\n\nKoy meydanina geri donuldu.\n\n");
                     } else {
@@ -170,6 +168,7 @@ int main()
                 }
             } else if (islem == 2) {
                 // Sifahaneye git.
+
                 if (can == 100)
                     printf("Can degeri %d/100 oldugu icin sifahaneye gidemezsin.\n",can);
                 else {
@@ -395,6 +394,7 @@ int main()
                             printf("Uyku seviyen cok dusuk oldugu icin sarki soylemeye halin yok.\nUyku seviyen: %d/100\n\nKoy meydanina geri donuldu.\n\n",uyku);
                         } else {
                             // Handa sarki soylendi
+
                             int kazanilan = 10 + (int)(karizma*hijyen/100.0);
                             tecrubePuani += 20;
                             altin += kazanilan;
@@ -418,6 +418,11 @@ int main()
                 // Seviye atla.
             } else if (islem == 6) {
                 // Durumu goster.
+
+                printf("\nDurum gosteriliyor...\n");
+                printf("\nOzanin adi: %s\nKullanilan calgi: %s\n",ad,calgi);
+                printf("\n--- Temel Nitelikler ---\n\n- Can = %d\n- Tokluk = %d\n- Uyku = %d\n- Hijyen = %d\n- Su Doygunlugu = %d\n- Mental Saglik = %d\n- Mutluluk = %d\n\n",can,tokluk,uyku,hijyen,suDoygunlugu,mentalSaglik,mutluluk);
+                printf("--- Beceriler ---\n\n- Guc = %d\n- Ceviklik = %d\n- Dayaniklilik = %d\n- Karizma = %d\n- Toplayicilik = %d\n\n",guc,ceviklik,dayaniklilik,karizma,toplayicilik);
             } else if (islem == 7) {
                 printf("Program sonlanacak. Emin misiniz?\n\ne -> evet\nh -> hayir\n");
                 scanf(" %c",&eminmi);
