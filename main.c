@@ -17,7 +17,7 @@ int main()
     int can = 100, tokluk = 100, uyku = 100, hijyen = 100, suDoygunlugu = 100, mentalSaglik = 100, mutluluk = 100; // [0,100] araliginda degisir
 
     // Temel nitelikler sifirlandiginda her tur kaybedilecek can miktarlari tanimlanir
-    int turSonuKayip_tokluk = 20, turSonuKayip_uyku = 15, turSonuKayip_hijyen = 10, turSonuKayip_suDoygunlugu = 15, turSonuKayip_mentalSaglik = 10, turSonuKayip_mutluluk = 10;
+    int turSonuKayip_tokluk = 20, turSonuKayip_uyku = 15, turSonuKayip_hijyen = 8, turSonuKayip_suDoygunlugu = 25, turSonuKayip_mentalSaglik = 10, turSonuKayip_mutluluk = 10;
 
     // Karakterin becerlieri tanimlanir
     int guc = 3, ceviklik = 3, dayaniklilik = 3, karizma = 3, toplayicilik = 3; // [0,25] araliginda degisir
@@ -27,9 +27,9 @@ int main()
 
     srand(time(NULL)); // rastgele degerler olusturmak icin kullanilir
 
-    printf("********** OZANIN MACERALARI **********\n\n");
+    printf("********** COCO'NUN MACERALARI **********\n\n");
 
-    printf("Ozanin adini giriniz: ");
+    printf("Coco ozaninin adini giriniz: ");
     gets(ad); // Ozanin adi alinir
     ad[0] = toupper(ad[0]); // Ozanin bas harfi buyuk yazilir
 
@@ -53,18 +53,22 @@ int main()
                 printf("1. Yiyecek satin al ve ye.\n2. Icecek satin al, ic, eglen.\n3. Enstruman cal ve sarki soyle.\n\n4. Koy meydanina don.\n\n");
 
                 printf("Handa yapilacak islemi giriniz: ");
-                scanf("%d",&altislem);
 
-                if (altislem == 3) {
-                    if (hijyen <= 20)
-                        printf("Hijyen seviyen 20 ve alti oldugu icin handa sarki soyleyemezsin. (Hijyen seviyen: \"%d\")\n\nKoy meydanina geri donuldu.\n\n", hijyen);
-                    else {
-                        // Handa sarki soylendi
-                        int kazanilan = 10 + (int)(karizma*hijyen/100.0);
-                        printf("Tebrikler!!! Handa sarki soyleyerek insanlari etkilemeyi basardin! Handaki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\n\n",(int)(karizma*hijyen/100.0),kazanilan);
+                if (scanf("%d",&altislem) == 1) {
+                    if (altislem == 3) {
+                        if (hijyen <= 20)
+                            printf("Hijyen seviyen 20 ve alti oldugu icin handa sarki soyleyemezsin. (Hijyen seviyen: \"%d\")\n\nKoy meydanina geri donuldu.\n\n", hijyen);
+                        else {
+                            // Handa sarki soylendi
+                            int kazanilan = 10 + (int)(karizma*hijyen/100.0);
+                            printf("Tebrikler!!! Handa sarki soyleyerek insanlari etkilemeyi basardin! Handaki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\n\n",(int)(karizma*hijyen/100.0),kazanilan);
 
-                        altin += kazanilan;
-                    }
+                            altin += kazanilan;
+                        }
+                }
+                } else {
+                    printf("Hatali islem secildi.\n");
+                    while (getchar() != '\n');
                 }
 
             } else if (islem == 4) {
@@ -95,9 +99,8 @@ int main()
 
     printf("Program sonlandirildi.");
 
-    if (can <= 0) {
+    if (can <= 0)
         printf("%s ozani hayatini kaybetti...",ad);
-    }
 
     return 0;
 }
