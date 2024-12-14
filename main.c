@@ -8,13 +8,13 @@
 int main()
 {
     // Gerekli tanimlamalar yapilir
-    int islem = 0, altislem = 0;
+    int islem = 0, altislem = 0, satinalinacakislem = 0;
 
     // Karakterin ozellikleri tanimlanir
     char ad[30], calgi[30];
 
     // Karakterin temel nitelikleri tanimlanir
-    int can = 100, tokluk = 100, uyku = 100, hijyen = 100, suDoygunlugu = 100, mentalSaglik = 100, mutluluk = 100; // [0,100] araliginda degisir
+    int can = 100, tokluk = 20, uyku = 100, hijyen = 100, suDoygunlugu = 100, mentalSaglik = 100, mutluluk = 100; // [0,100] araliginda degisir
 
     // Temel nitelikler sifirlandiginda her tur kaybedilecek can miktarlari tanimlanir
     int turSonuKayip_tokluk = 20, turSonuKayip_uyku = 15, turSonuKayip_hijyen = 8, turSonuKayip_suDoygunlugu = 25, turSonuKayip_mentalSaglik = 10, turSonuKayip_mutluluk = 10;
@@ -50,22 +50,168 @@ int main()
             } else if (islem == 3) {
                 // Hana git.
 
-                printf("1. Yiyecek satin al ve ye.\n2. Icecek satin al, ic, eglen.\n3. Enstruman cal ve sarki soyle.\n\n4. Koy meydanina don.\n\n");
+                printf("1. Yiyecek satin al, ye ve eglen.\n2. Icecek satin al, ic ve eglen.\n3. Enstruman cal ve sarki soyle.\n\n4. Koy meydanina don.\n\n");
 
                 printf("Handa yapilacak islemi giriniz: ");
 
                 if (scanf("%d",&altislem) == 1) {
-                    if (altislem == 3) {
+                    if (altislem == 1) {
+                        // Yiyecek satin al, ye ve eglen.
+
+                        printf("\nYiyecek Listesi: \n1. Ekmek (10 tokluk) -> 10 altin\n2. Bir porsiyon yahni (50 tokluk) -> 40 altin\n3. Elma (5 tokluk) -> 5 altin\n4. Bir porsiyon tavuk (35 tokluk) -> 35 altin\n5. Atistirmaliklar (15 tokluk) -> 15 altin\n");
+
+                        printf("Satin alinacak yiyecegi giriniz (%d altinin var): ", altin);
+
+                        if (scanf("%d",&satinalinacakislem) == 1) {
+                            if (satinalinacakislem == 1) {
+                                if (tokluk == 100) {
+                                    printf("Cok tok oldugunuz icin secilen yiyecek satin alinmadi.\n\nKoy meydanina geri donuldu.\n\n");
+                                } else if ((tokluk+10 >= 100) && (altin >= 10)) {
+                                    tokluk = 100;
+                                    altin -= 10;
+                                    printf("Bir ekmek satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else if (altin >= 10){
+                                    tokluk += 10;
+                                    altin -= 10;
+                                    printf("Bir ekmek satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else {
+                                    printf("Bu yiyecegi satin alabilmek icin yeterli altinin yok. Altin miktarin: %d\n\n",altin);
+                                }
+                            } else if (satinalinacakislem == 2) {
+                                if (tokluk == 100) {
+                                    printf("Cok tok oldugunuz icin secilen yiyecek satin alinmadi.\n\nKoy meydanina geri donuldu.\n\n");
+                                } else if ((tokluk+50 >= 100) && (altin >= 50)) {
+                                    tokluk = 100;
+                                    altin -= 50;
+                                    printf("Bir porsiyon yahni satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else if (altin >= 50) {
+                                    tokluk += 50;
+                                    altin -= 50;
+                                    printf("Bir porsiyon yahni satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else {
+                                    printf("Bu yiyecegi satin alabilmek icin yeterli altinin yok. Altin miktarin: %d\n\n",altin);
+                                }
+                            } else if (satinalinacakislem == 3) {
+                                if (tokluk == 100) {
+                                    printf("Cok tok oldugunuz icin secilen yiyecek satin alinmadi.\n\nKoy meydanina geri donuldu.\n\n");
+                                } else if ((tokluk+5 >= 100) && (altin >= 5)) {
+                                    tokluk = 100;
+                                    altin -= 5;
+                                    printf("Bir elma satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else if (altin >= 5) {
+                                    tokluk += 5;
+                                    altin -= 5;
+                                    printf("Bir elma satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else {
+                                    printf("Bu yiyecegi satin alabilmek icin yeterli altinin yok. Altin miktarin: %d\n\n",altin);
+                                }
+                            } else if (satinalinacakislem == 4) {
+                                if (tokluk == 100) {
+                                    printf("Cok tok oldugunuz icin secilen yiyecek satin alinmadi.\n\nKoy meydanina geri donuldu.\n\n");
+                                } else if ((tokluk+35 >= 100) && (altin >= 35)) {
+                                    tokluk = 100;
+                                    altin -= 35;
+                                    printf("Bir porsiyon tavuk satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else if (altin >= 35){
+                                    tokluk += 35;
+                                    altin -= 35;
+                                    printf("Bir porsiyon tavuk satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else {
+                                    printf("Bu yiyecegi satin alabilmek icin yeterli altinin yok. Altin miktarin: %d\n\n",altin);
+                                }
+                            } else if (satinalinacakislem == 5) {
+                                if (tokluk == 100) {
+                                    printf("Cok tok oldugunuz icin secilen yiyecek satin alinmadi.\n\nKoy meydanina geri donuldu.\n\n");
+                                } else if ((tokluk+15 >= 100) && (altin >= 15)) {
+                                    tokluk = 100;
+                                    altin -= 15;
+                                    printf("Atistirmaliklar satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else if (altin >= 15) {
+                                    tokluk += 15;
+                                    altin -= 15;
+                                    printf("Atistirmaliklar satin alip yediniz! Tokluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",tokluk,altin);
+                                } else {
+                                    printf("Bu yiyecegi satin alabilmek icin yeterli altinin yok. Altin miktarin: %d\n\n",altin);
+                                }
+                            } else {
+                                printf("Hatali islem secildi.\n");
+                            }
+                        } else {
+                            printf("Hatali islem secildi.\n");
+                            while (getchar() != '\n'); // Karakter girildiginde girilen yanlis ifadeler bellekten temizlenir
+                        }
+                    } else if (altislem == 2) {
+                        // Icecek satin al, ic ve eglen.
+
+                        printf("\nIcecek Listesi: \n1. Su (40 sudoygunlugu) -> 40 altin\n2. Meyve suyu (15 sudoygunlugu) -> 15 altin\n3. Sut (20 sudoygunlugu) -> 20 altin\n");
+
+                        printf("Satin alinacak icecegi giriniz (%d altinin var): ", altin);
+
+                        if (scanf("%d",&satinalinacakislem) == 1) {
+                            if (satinalinacakislem == 1) {
+                                if (suDoygunlugu == 100) {
+                                    printf("Vucudundaki su miktari cok yuksek oldugu icin secilen icecek satin alinmadi.\n\nKoy meydanina geri donuldu.\n\n");
+                                } else if ((suDoygunlugu+40 >= 100) && (altin >=40)) {
+                                    suDoygunlugu = 100;
+                                    altin -= 40;
+                                    printf("Bir su satin alip ictiniz! Su doygunluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",suDoygunlugu,altin);
+                                } else if (altin >=40) {
+                                    suDoygunlugu += 40;
+                                    altin -= 40;
+                                    printf("Bir su satin alip ictiniz! Su doygunluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",suDoygunlugu,altin);
+                                } else {
+                                    printf("Bu icecegi satin alabilmek icin yeterli altinin yok. Altin miktarin: %d\n\n",altin);
+                                }
+                            } else if (satinalinacakislem == 2) {
+                                if (suDoygunlugu == 100) {
+                                    printf("Vucudundaki su miktari cok yuksek oldugu icin secilen icecek satin alinmadi.\n\nKoy meydanina geri donuldu.\n\n");
+                                } else if ((suDoygunlugu+15 >= 100) && (altin >=15)) {
+                                    suDoygunlugu = 100;
+                                    altin -= 15;
+                                    printf("Bir meyve suyu satin alip ictiniz! Su doygunluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",suDoygunlugu,altin);
+                                } else if (altin >= 15) {
+                                    suDoygunlugu += 15;
+                                    altin -= 15;
+                                    printf("Bir meyve suyu satin alip ictiniz! Su doygunluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",suDoygunlugu,altin);
+                                } else {
+                                    printf("Bu icecegi satin alabilmek icin yeterli altinin yok. Altin miktarin: %d\n\n",altin);
+                                }
+                            } else if (satinalinacakislem == 3) {
+                                if (suDoygunlugu == 100) {
+                                    printf("Vucudundaki su miktari cok yuksek oldugu icin secilen icecek satin alinmadi.\n\nKoy meydanina geri donuldu.\n\n");
+                                } else if ((suDoygunlugu+20 >= 100) && altin >= 20) {
+                                    suDoygunlugu = 100;
+                                    altin -= 20;
+                                    printf("Bir sut satin alip ictiniz! Su doygunluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",suDoygunlugu,altin);
+                                } else if (altin >= 20) {
+                                    suDoygunlugu += 20;
+                                    altin -= 20;
+                                    printf("Bir sut satin alip ictiniz! Su doygunluk seviyeniz: %d/100\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",suDoygunlugu,altin);
+                                } else {
+                                    printf("Bu icecegi satin alabilmek icin yeterli altinin yok. Altin miktarin: %d\n\n",altin);
+                                }
+                            } else {
+                                printf("Hatali islem secildi.\n");
+                            }
+                        } else {
+                            printf("Hatali islem secildi.\n");
+                            while (getchar() != '\n'); // Karakter girildiginde girilen yanlis ifadeler bellekten temizlenir
+                        }
+                    } else if (altislem == 3) {
+                        // Enstruman cal ve sarki soyle.
+
                         if (hijyen <= 20)
                             printf("Hijyen seviyen 20 ve alti oldugu icin handa sarki soyleyemezsin. (Hijyen seviyen: \"%d\")\n\nKoy meydanina geri donuldu.\n\n", hijyen);
                         else {
                             // Handa sarki soylendi
                             int kazanilan = 10 + (int)(karizma*hijyen/100.0);
-                            printf("Tebrikler!!! Handa sarki soyleyerek insanlari etkilemeyi basardin! Handaki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\n\n",(int)(karizma*hijyen/100.0),kazanilan);
-
+                            tecrubePuani += 20;
                             altin += kazanilan;
+                            printf("Tebrikler!!! Handa sarki soyleyerek insanlari etkilemeyi basardin! Handaki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 20\nToplam altin miktari: %d\n\n",(int)(karizma*hijyen/100.0),kazanilan,altin);
                         }
-                }
+                    } else if (altislem == 4)
+                        printf("Koy meydanina geri donuldu.\n\n");
+
                 } else {
                     printf("Hatali islem secildi.\n");
                     while (getchar() != '\n');
