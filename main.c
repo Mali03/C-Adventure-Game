@@ -17,7 +17,7 @@ int main()
     int can = 100, tokluk = 100, uyku = 100, hijyen = 100, suDoygunlugu = 100, mentalSaglik = 100, mutluluk = 100; // [0,100] araliginda degisir
 
     // Temel nitelikler sifirlandiginda her tur kaybedilecek can miktarlari tanimlanir
-    int turSonuKayip_tokluk = 20, turSonuKayip_uyku = 15, turSonuKayip_hijyen = 8, turSonuKayip_suDoygunlugu = 25, turSonuKayip_mentalSaglik = 10, turSonuKayip_mutluluk = 10;
+    int gunSonuKayip_tokluk = 20, gunSonuKayip_uyku = 15, gunSonuKayip_hijyen = 8, gunSonuKayip_suDoygunlugu = 25, gunSonuKayip_mentalSaglik = 10, gunSonuKayip_mutluluk = 10;
 
     // Karakterin becerlieri tanimlanir
     int guc = 3, ceviklik = 3, dayaniklilik = 3, karizma = 3, toplayicilik = 3; // [0,25] araliginda degisir
@@ -40,8 +40,27 @@ int main()
     printf("\n1. Kamp alanina git.\n2. Sifahaneye git.\n3. Hana git.\n4. Maceraya atil.\n5. Seviye atla.\n6. Durumu goster.\n\n7. Oyundan cik.\n\n");
 
     while (can > 0) {
+
         if (tur == 4) {
             gun++;
+
+            if (tokluk == 0)
+                can -= gunSonuKayip_tokluk;
+
+            if (uyku == 0)
+                can -= gunSonuKayip_uyku;
+
+            if (hijyen == 0)
+                can -= gunSonuKayip_hijyen;
+
+            if (suDoygunlugu == 0)
+                can -= gunSonuKayip_suDoygunlugu;
+
+            if (mentalSaglik == 0)
+                can -= gunSonuKayip_mentalSaglik;
+
+            if (mutluluk == 0)
+                can -= gunSonuKayip_mutluluk;
         }
 
         if (tur == 8) {
