@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+// ormanKesfiSavas fonksiyonu
+
 int main()
 {
     // Gerekli tanimlamalar yapilir
     int islem = 0, altislem = 0, satinalinacakislem = 0;
 
     // Karakterin ozellikleri tanimlanir
-    char ad[30], calgi[30], intihar, eminmi;
+    char ad[30], calgi[30], intihar, eminmi, savassecim;
 
     // Karakterin temel nitelikleri tanimlanir
     int can = 100, tokluk = 100, uyku = 100, hijyen = 100, suDoygunlugu = 100, mentalSaglik = 100, mutluluk = 100; // [0,100] araliginda degisir
@@ -20,8 +22,10 @@ int main()
     int guc = 3, ceviklik = 3, dayaniklilik = 3, karizma = 3, toplayicilik = 3; // [0,25] araliginda degisir
 
     // Macera degiskenleri tanimlanir
-    int altin = 10, tecrubePuani = 0, tur = 1, gun = 1;
+    int altin = 10, tecrubePuani = 100, tur = 1, gun = 1;
 
+    // Sans faktorleri tanimlanir
+    int sifaliBitkiBulmaSansi = 0;
     srand(time(NULL)); // rastgele degerler olusturmak icin kullanilir
 
     printf("********** COCO'NUN MACERALARI **********\n\n");
@@ -114,6 +118,9 @@ int main()
             }
         }
 
+        if (tecrubePuani >= 100)
+            printf("\nTecrube puanin 100'e ulasti! Seviye atlamak icin seviye atla menusune gecmelisin!\n\n");
+
         printf("Yapilacak islemi giriniz (Gun: %d Saat: %d:00): ",gun,(tur%4)*6);
 
         if (scanf("%d",&islem) == 1) {
@@ -140,7 +147,7 @@ int main()
                             karizma += 1;
                             printf("Tebrikler!!! Kamp atesinde %s ile calgi calip sarki soyleyerek insanlari etkilemeyi basardin! Kamp atesindeki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 15\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",calgi,(int)(karizma*hijyen/100.0),kazanilan,altin);
                         }
-                    } else {
+                    } else if (altislem == 2) {
                         int olasilik = rand()%20+1; // [1,20] arasinda
 
                         if (olasilik == 1) {
@@ -154,19 +161,21 @@ int main()
                                 printf("\nNehirde yikanarak hijyen seviyeni fulledin.\n\nKoy meydanina geri donuldu.\n\n");
                             }
                         }
-                    }
-                } else if (altislem == 3) {
-                    if (uyku == 100) {
-                        printf("\n\nUykun olmadigi icin uyuyamadin.\n\nKoy meydanina geri donuldu.\n\n");
+                    } else if (altislem == 3) {
+                        if (uyku == 100) {
+                            printf("\n\nUykun olmadigi icin uyuyamadin.\n\nKoy meydanina geri donuldu.\n\n");
+                        } else {
+                            uyku = 100;
+                            printf("\n\nCadirinda misil misil uyuyarak uykunu fulledin.\n\nKoy meydanina geri donuldu.\n\n");
+                        }
                     } else {
-                        uyku = 100;
-                        printf("\n\nCadirinda misil misil uyuyarak uykunu fulledin.\n\nKoy meydanina geri donuldu.\n\n");
+                        printf("Koy meydanina geri donuldu.\n\n");
                     }
                 } else {
                     printf("Hatali islem secildi.\n");
                     while (getchar() != '\n'); // Karakter girildiginde girilen yanlis ifadeler bellekten temizlenir
                 }
-            } else if (islem == 2) {
+                } else if (islem == 2) {
                 // Sifahaneye git.
 
                 if (can == 100)
@@ -219,7 +228,7 @@ int main()
                         } else if (altin < 40)
                             printf("Yetersiz altin!!\n");
                         else
-                            printf("Koy meydanina donuluyor...\n\n");
+                            printf("Koy meydanina geri donuldu.\n\n");
                     } else
                         printf("Hatali giris!!!\n");
                 }
@@ -414,20 +423,83 @@ int main()
 
             } else if (islem == 4) {
                 // Maceraya atil.
+
+                printf("1. Yakin cevreden sifali bitki topla ve avlan.\n2. Ormani kesfe cik (kolay)\n3. Kayaliklari kesfe cik (orta)\n4. Vadiyi kesfe cik (zor)\n5. Koy meydanina don\n\n");
+
+                printf("Yapilacak macerayi giriniz: ");
+
+                if (scanf("%d",&altislem) == 1) {
+                    if (altislem == 1) {
+                        sifaliBitkiBulmaSansi = toplayicilik*4;
+                        int sayac = 0;
+                        if ((rand() % 100) +1 < sifaliBitkiBulmaSansi) {
+                            can += 10;
+                            if (can > 100)
+                                can = 100;
+                            sayac ++;
+                            printf("\nBir sifali bitki buldun! Canin 10 artarak %d oldu.\n", can);
+                        }
+
+                        if ((rand() % 100) +1 < sifaliBitkiBulmaSansi) {
+                            tokluk += 10;
+                            if (tokluk > 100)
+                                tokluk = 100;
+
+                            sayac ++;
+                            printf("\nBir meyve buldun! Toklugun 10 artarak %d oldu.\n", tokluk);
+                        }
+
+                        if ((rand() % 100) +1 < sifaliBitkiBulmaSansi/2) {
+                            tokluk += 50;
+                            if (tokluk > 100)
+                                tokluk = 100;
+
+                            sayac ++;
+                            printf("\nBir av hayvan buldun ve onu avladin! Toklugun 50 artarak %d oldu.\n", tokluk);
+                        }
+
+                        if (sayac == 0) {
+                            printf("\nCok sanssizsin herhangi bir bitki veya av bulamadin.\n");
+                        }
+                    } else if (altislem == 2) {
+                        int haydutGuc = rand()%3+1;
+                        int haydutCeviklik = rand()%3+1;
+                        int haydutDayaniklilik = rand()%3+1;
+
+                        int kacabilmeIhtimali = 4*ceviklik;
+
+                        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n",haydutGuc, haydutCeviklik, haydutDayaniklilik);
+                        printf("k -> kac (kacabilme ihtimalin: %%%d)\ns -> savas\n\nNe yapacaksin? ", kacabilmeIhtimali);
+                        scanf(" %c", &savassecim);
+
+                        if (savassecim == 'k') {
+                            if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                                printf("\nSavastan kacmayi basardin!\n\n");
+                            } else {
+                                printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+//                                ormanKesfiSavas(haydutGuc,haydutCeviklik,haydutDayaniklilik);
+                            }
+                        }
+
+                    } else {
+                        printf("Hatali islem secildi.\n");
+                    }
+                } else {
+                    printf("Hatali islem secildi.\n");
+                    while (getchar() != '\n');
+                }
             } else if (islem == 5) {
                 // Seviye atla.
 
                 if (tecrubePuani == 100) {
-
                     int beceriyukseltme;
                     printf("\nTebrikler!! Seviye atladiniz.\n");
                     printf("\n--- Beceriler ---\n1. Guc = %d\n2. Ceviklik = %d\n3. Dayaniklilik = %d\n4. Karizma = %d\n5. Toplayicilik = %d\n\n",guc,ceviklik,dayaniklilik,karizma,toplayicilik);
                     tecrubePuani=0;
-
                     for(int i=0;i<5;i++) {
                         printf("%d. olarak yukseltilecek beceriyi giriniz: ",i+1);
                         if(scanf("%d",&beceriyukseltme) == 1){
-
                             if (beceriyukseltme == 1) {
                                 guc++;
                             } else if (beceriyukseltme == 2) {
@@ -449,7 +521,6 @@ int main()
                         }
                     }
                     printf("\nYukseltme gerceklestirildi. Becerilerin yeni degerleri: \n1. Guc = %d\n2. Ceviklik = %d\n3. Dayaniklilik = %d\n4. Karizma = %d\n5. Toplayicilik = %d\n\n",guc,ceviklik,dayaniklilik,karizma,toplayicilik);
-
                 } else {
                     printf("Tecrube puani yeterli degil!!!\n");
                 }
