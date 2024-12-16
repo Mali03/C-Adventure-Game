@@ -2,7 +2,668 @@
 #include <stdlib.h>
 #include <string.h>
 
-// ormanKesfiSavas fonksiyonu
+void ormanKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydutDayaniklilik, int *can, int guc, int ceviklik, int dayaniklilik, int *altin, int *tecrubePuani) {
+    srand(time(NULL));
+
+    int karakterVerilenHasar, haydutAlinanHasar, haydutVerilenHasar, karakterAlinanHasar, kazanilanGanimet, baslayacak;
+    char savassecim;
+
+    if (haydutCeviklik < ceviklik) {
+        // Karakter baslar
+
+        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
+
+        while (can > 0 && haydutCan > 0) {
+            int kacabilmeIhtimali = 4*ceviklik;
+            printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+            scanf(" %c", &savassecim);
+
+            if (savassecim == 'k') {
+                if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                    printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                    break;
+                } else {
+                    printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                    printf("Ceviklik seviyen daha yuksek oldugu icin savasa ilk sen basladin!\n");
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+                }
+            } else {
+                printf("Savasmaya devam ettin!\n");
+
+                karakterVerilenHasar = 4*guc;
+                haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                haydutCan -= haydutAlinanHasar;
+                printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                haydutVerilenHasar = 4*haydutGuc;
+                karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                *can -= karakterAlinanHasar;
+
+                printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+            }
+        }
+
+        if (haydutCan <= 0) {
+            printf("\nSavastan galip geldin!\n");
+            kazanilanGanimet = rand()%10+15; // [15,25]
+            *altin += kazanilanGanimet;
+            *tecrubePuani += 30;
+            printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 30 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+        }
+    } else if (haydutCeviklik > ceviklik) {
+        // Haydut baslar
+
+        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
+
+        while (can > 0 && haydutCan > 0) {
+            int kacabilmeIhtimali = 4*ceviklik;
+            printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+            scanf(" %c", &savassecim);
+
+            if (savassecim == 'k') {
+                if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                    printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                    break;
+                } else {
+                    printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                    printf("Haydutun ceviklik seviyesi daha yuksek oldugu icin savasa ilk haydut basladi!\n");
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+                }
+            } else {
+                printf("Savasmaya devam ettin!\n");
+
+                haydutVerilenHasar = 4*haydutGuc;
+                karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                *can -= karakterAlinanHasar;
+
+                printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                karakterVerilenHasar = 4*guc;
+                haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                haydutCan -= haydutAlinanHasar;
+                printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+            }
+        }
+
+        if (haydutCan <= 0) {
+            printf("\nSavastan galip geldin!\n");
+            kazanilanGanimet = rand()%10+15; // [15,25]
+            *altin += kazanilanGanimet;
+            *tecrubePuani += 30;
+            printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 30 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+        }
+    } else {
+        // Rastgele kisi baslar
+
+        baslayacak = rand()%2; // [0,2]
+
+        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
+
+        if (baslayacak == 0) { // Karakter baslar
+            while (can > 0 && haydutCan > 0) {
+                int kacabilmeIhtimali = 4*ceviklik;
+                printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+                scanf(" %c", &savassecim);
+
+                if (savassecim == 'k') {
+                    if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                        printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                        break;
+                    } else {
+                        printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                        printf("Ceviklik seviyen daha yuksek oldugu icin savasa ilk sen basladin!\n");
+
+                        karakterVerilenHasar = 4*guc;
+                        haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                        haydutCan -= haydutAlinanHasar;
+                        printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                        haydutVerilenHasar = 4*haydutGuc;
+                        karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                        *can -= karakterAlinanHasar;
+
+                        printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+                    }
+                } else {
+                    printf("Savasmaya devam ettin!\n");
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+                }
+            }
+
+            if (haydutCan <= 0) {
+                printf("\nSavastan galip geldin!\n");
+                kazanilanGanimet = rand()%10+15; // [15,25]
+                *altin += kazanilanGanimet;
+                *tecrubePuani += 30;
+                printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 30 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+            }
+        } else { // Haydut baslar
+            while (can > 0 && haydutCan > 0) {
+                int kacabilmeIhtimali = 4*ceviklik;
+                printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+                scanf(" %c", &savassecim);
+
+                if (savassecim == 'k') {
+                    if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                        printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                        break;
+                    } else {
+                    printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                    printf("Haydutun ceviklik seviyesi daha yuksek oldugu icin savasa ilk haydut basladi!\n");
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                        *can -= karakterAlinanHasar;
+
+                        printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                        karakterVerilenHasar = 4*guc;
+                        haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                        haydutCan -= haydutAlinanHasar;
+                        printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+                    }
+                } else {
+                    printf("Savasmaya devam ettin!\n");
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+                }
+            }
+
+            if (haydutCan <= 0) {
+                printf("\nSavastan galip geldin!\n");
+                kazanilanGanimet = rand()%10+15; // [15,25]
+                *altin += kazanilanGanimet;
+                *tecrubePuani += 30;
+                printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 30 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+            }
+        }
+    }
+}
+
+void kayalikKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydutDayaniklilik, int *can, int guc, int ceviklik, int dayaniklilik, int *altin, int *tecrubePuani) {
+    srand(time(NULL));
+
+    int karakterVerilenHasar, haydutAlinanHasar, haydutVerilenHasar, karakterAlinanHasar, kazanilanGanimet, baslayacak;
+    char savassecim;
+
+    if (haydutCeviklik < ceviklik) {
+        // Karakter baslar
+
+        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
+
+        while (can > 0 && haydutCan > 0) {
+            int kacabilmeIhtimali = 4*ceviklik;
+            printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+            scanf(" %c", &savassecim);
+
+            if (savassecim == 'k') {
+                if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                    printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                    break;
+                } else {
+                    printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                    printf("Ceviklik seviyen daha yuksek oldugu icin savasa ilk sen basladin!\n");
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+                }
+            } else {
+                printf("Savasmaya devam ettin!\n");
+
+                karakterVerilenHasar = 4*guc;
+                haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                haydutCan -= haydutAlinanHasar;
+                printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                haydutVerilenHasar = 4*haydutGuc;
+                karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                *can -= karakterAlinanHasar;
+
+                printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+            }
+        }
+
+        if (haydutCan <= 0) {
+            printf("\nSavastan galip geldin!\n");
+            kazanilanGanimet = rand()%20+55; // [55,75]
+            *altin += kazanilanGanimet;
+            *tecrubePuani += 60;
+            printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 60 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+        }
+    } else if (haydutCeviklik > ceviklik) {
+        // Haydut baslar
+
+        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
+
+        while (can > 0 && haydutCan > 0) {
+            int kacabilmeIhtimali = 4*ceviklik;
+            printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+            scanf(" %c", &savassecim);
+
+            if (savassecim == 'k') {
+                if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                    printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                    break;
+                } else {
+                    printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                    printf("Haydutun ceviklik seviyesi daha yuksek oldugu icin savasa ilk haydut basladi!\n");
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+                }
+            } else {
+                printf("Savasmaya devam ettin!\n");
+
+                haydutVerilenHasar = 4*haydutGuc;
+                karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                *can -= karakterAlinanHasar;
+
+                printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                karakterVerilenHasar = 4*guc;
+                haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                haydutCan -= haydutAlinanHasar;
+                printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+            }
+        }
+
+        if (haydutCan <= 0) {
+            printf("\nSavastan galip geldin!\n");
+            kazanilanGanimet = rand()%20+55; // [55,75]
+            *altin += kazanilanGanimet;
+            *tecrubePuani += 60;
+            printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 60 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+        }
+    } else {
+        // Rastgele kisi baslar
+
+        baslayacak = rand()%2; // [0,2]
+
+        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
+
+        if (baslayacak == 0) { // Karakter baslar
+            while (can > 0 && haydutCan > 0) {
+                int kacabilmeIhtimali = 4*ceviklik;
+                printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+                scanf(" %c", &savassecim);
+
+                if (savassecim == 'k') {
+                    if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                        printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                        break;
+                    } else {
+                        printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                        printf("Ceviklik seviyen daha yuksek oldugu icin savasa ilk sen basladin!\n");
+
+                        karakterVerilenHasar = 4*guc;
+                        haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                        haydutCan -= haydutAlinanHasar;
+                        printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                        haydutVerilenHasar = 4*haydutGuc;
+                        karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                        *can -= karakterAlinanHasar;
+
+                        printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+                    }
+                } else {
+                    printf("Savasmaya devam ettin!\n");
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+                }
+            }
+
+            if (haydutCan <= 0) {
+                printf("\nSavastan galip geldin!\n");
+                kazanilanGanimet = rand()%20+55; // [55,75]
+                *altin += kazanilanGanimet;
+                *tecrubePuani += 60;
+                printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 60 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+            }
+        } else { // Haydut baslar
+            while (can > 0 && haydutCan > 0) {
+                int kacabilmeIhtimali = 4*ceviklik;
+                printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+                scanf(" %c", &savassecim);
+
+                if (savassecim == 'k') {
+                    if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                        printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                        break;
+                    } else {
+                    printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                    printf("Haydutun ceviklik seviyesi daha yuksek oldugu icin savasa ilk haydut basladi!\n");
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                        *can -= karakterAlinanHasar;
+
+                        printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                        karakterVerilenHasar = 4*guc;
+                        haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                        haydutCan -= haydutAlinanHasar;
+                        printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+                    }
+                } else {
+                    printf("Savasmaya devam ettin!\n");
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+                }
+            }
+
+            if (haydutCan <= 0) {
+                printf("\nSavastan galip geldin!\n");
+                kazanilanGanimet = rand()%20+55; // [55,75]
+                *altin += kazanilanGanimet;
+                *tecrubePuani += 60;
+                printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 60 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+            }
+        }
+    }
+}
+
+void vadiKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydutDayaniklilik, int *can, int guc, int ceviklik, int dayaniklilik, int *altin, int *tecrubePuani) {
+    srand(time(NULL));
+
+    int karakterVerilenHasar, haydutAlinanHasar, haydutVerilenHasar, karakterAlinanHasar, kazanilanGanimet, baslayacak;
+    char savassecim;
+
+    if (haydutCeviklik < ceviklik) {
+        // Karakter baslar
+
+        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
+
+        while (can > 0 && haydutCan > 0) {
+            int kacabilmeIhtimali = 4*ceviklik;
+            printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+            scanf(" %c", &savassecim);
+
+            if (savassecim == 'k') {
+                if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                    printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                    break;
+                } else {
+                    printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                    printf("Ceviklik seviyen daha yuksek oldugu icin savasa ilk sen basladin!\n");
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+                }
+            } else {
+                printf("Savasmaya devam ettin!\n");
+
+                karakterVerilenHasar = 4*guc;
+                haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                haydutCan -= haydutAlinanHasar;
+                printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                haydutVerilenHasar = 4*haydutGuc;
+                karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                *can -= karakterAlinanHasar;
+
+                printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+            }
+        }
+
+        if (haydutCan <= 0) {
+            printf("\nSavastan galip geldin!\n");
+            kazanilanGanimet = rand()%20+55; // [55,75]
+            *altin += kazanilanGanimet;
+            *tecrubePuani += 90;
+            printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 90 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+        }
+    } else if (haydutCeviklik > ceviklik) {
+        // Haydut baslar
+
+        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
+
+        while (can > 0 && haydutCan > 0) {
+            int kacabilmeIhtimali = 4*ceviklik;
+            printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+            scanf(" %c", &savassecim);
+
+            if (savassecim == 'k') {
+                if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                    printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                    break;
+                } else {
+                    printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                    printf("Haydutun ceviklik seviyesi daha yuksek oldugu icin savasa ilk haydut basladi!\n");
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+                }
+            } else {
+                printf("Savasmaya devam ettin!\n");
+
+                haydutVerilenHasar = 4*haydutGuc;
+                karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                *can -= karakterAlinanHasar;
+
+                printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                karakterVerilenHasar = 4*guc;
+                haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                haydutCan -= haydutAlinanHasar;
+                printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+            }
+        }
+
+        if (haydutCan <= 0) {
+            printf("\nSavastan galip geldin!\n");
+            kazanilanGanimet = rand()%20+55; // [55,75]
+            *altin += kazanilanGanimet;
+            *tecrubePuani += 90;
+            printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 90 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+        }
+    } else {
+        // Rastgele kisi baslar
+
+        baslayacak = rand()%2; // [0,2]
+
+        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
+
+        if (baslayacak == 0) { // Karakter baslar
+            while (can > 0 && haydutCan > 0) {
+                int kacabilmeIhtimali = 4*ceviklik;
+                printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+                scanf(" %c", &savassecim);
+
+                if (savassecim == 'k') {
+                    if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                        printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                        break;
+                    } else {
+                        printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                        printf("Ceviklik seviyen daha yuksek oldugu icin savasa ilk sen basladin!\n");
+
+                        karakterVerilenHasar = 4*guc;
+                        haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                        haydutCan -= haydutAlinanHasar;
+                        printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                        haydutVerilenHasar = 4*haydutGuc;
+                        karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                        *can -= karakterAlinanHasar;
+
+                        printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+                    }
+                } else {
+                    printf("Savasmaya devam ettin!\n");
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+                }
+            }
+
+            if (haydutCan <= 0) {
+                printf("\nSavastan galip geldin!\n");
+                kazanilanGanimet = rand()%20+55; // [55,75]
+                *altin += kazanilanGanimet;
+                *tecrubePuani += 90;
+                printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 90 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+            }
+        } else { // Haydut baslar
+            while (can > 0 && haydutCan > 0) {
+                int kacabilmeIhtimali = 4*ceviklik;
+                printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
+                scanf(" %c", &savassecim);
+
+                if (savassecim == 'k') {
+                    if ((rand() % 100) +1 < kacabilmeIhtimali) {
+                        printf("\nSavastan kacmayi basardin!\n\nKoye geri dondun.\n\n");
+                        break;
+                    } else {
+                    printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
+
+                    printf("Haydutun ceviklik seviyesi daha yuksek oldugu icin savasa ilk haydut basladi!\n");
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                        *can -= karakterAlinanHasar;
+
+                        printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                        karakterVerilenHasar = 4*guc;
+                        haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                        haydutCan -= haydutAlinanHasar;
+                        printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+                    }
+                } else {
+                    printf("Savasmaya devam ettin!\n");
+
+                    haydutVerilenHasar = 4*haydutGuc;
+                    karakterAlinanHasar = haydutVerilenHasar - ((int)haydutVerilenHasar*dayaniklilik*0.04 - 1);
+                    *can -= karakterAlinanHasar;
+
+                    printf("\nHaydut sana %d hasar verdi!\n",karakterAlinanHasar);
+
+                    karakterVerilenHasar = 4*guc;
+                    haydutAlinanHasar = karakterVerilenHasar - ((int)karakterVerilenHasar*haydutDayaniklilik*0.04 - 1);
+                    haydutCan -= haydutAlinanHasar;
+                    printf("\nHayduta %d hasar verdin!\n",haydutAlinanHasar);
+                }
+            }
+
+            if (haydutCan <= 0) {
+                printf("\nSavastan galip geldin!\n");
+                kazanilanGanimet = rand()%20+55; // [55,75]
+                *altin += kazanilanGanimet;
+                *tecrubePuani += 90;
+                printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 90 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
+            }
+        }
+    }
+}
 
 int main()
 {
@@ -22,7 +683,7 @@ int main()
     int guc = 3, ceviklik = 3, dayaniklilik = 3, karizma = 3, toplayicilik = 3; // [0,25] araliginda degisir
 
     // Macera degiskenleri tanimlanir
-    int altin = 10, tecrubePuani = 100, tur = 1, gun = 1;
+    int altin = 10, tecrubePuani = 0, tur = 1, gun = 1;
 
     // Sans faktorleri tanimlanir
     int sifaliBitkiBulmaSansi = 0;
@@ -461,27 +1122,24 @@ int main()
                         if (sayac == 0) {
                             printf("\nCok sanssizsin herhangi bir bitki veya av bulamadin.\n");
                         }
-                    } else if (altislem == 2) {
+                    } else if (altislem == 2) { // Kolay
                         int haydutGuc = rand()%3+1;
                         int haydutCeviklik = rand()%3+1;
                         int haydutDayaniklilik = rand()%3+1;
 
-                        int kacabilmeIhtimali = 4*ceviklik;
+                        ormanKesfiSavas(100,haydutGuc,haydutCeviklik,haydutDayaniklilik,&can,guc,ceviklik,dayaniklilik,&altin,&tecrubePuani);
+                    } else if (altislem == 3) { // Orta
+                        int haydutGuc = rand()%3+4;
+                        int haydutCeviklik = rand()%3+4;
+                        int haydutDayaniklilik = rand()%3+4;
 
-                        printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n",haydutGuc, haydutCeviklik, haydutDayaniklilik);
-                        printf("k -> kac (kacabilme ihtimalin: %%%d)\ns -> savas\n\nNe yapacaksin? ", kacabilmeIhtimali);
-                        scanf(" %c", &savassecim);
+                        kayalikKesfiSavas(100,haydutGuc,haydutCeviklik,haydutDayaniklilik,&can,guc,ceviklik,dayaniklilik,&altin,&tecrubePuani);
+                    } else if (altislem == 4) { // Zor
+                        int haydutGuc = rand()%4+7;
+                        int haydutCeviklik = rand()%4+7;
+                        int haydutDayaniklilik = rand()%4+7;
 
-                        if (savassecim == 'k') {
-                            if ((rand() % 100) +1 < kacabilmeIhtimali) {
-                                printf("\nSavastan kacmayi basardin!\n\n");
-                            } else {
-                                printf("\nSavastan kacamadin! Mecbur olarak savasa katildin.\n\n");
-
-//                                ormanKesfiSavas(haydutGuc,haydutCeviklik,haydutDayaniklilik);
-                            }
-                        }
-
+                        vadiKesfiSavas(100,haydutGuc,haydutCeviklik,haydutDayaniklilik,&can,guc,ceviklik,dayaniklilik,&altin,&tecrubePuani);
                     } else {
                         printf("Hatali islem secildi.\n");
                     }
@@ -529,7 +1187,7 @@ int main()
 
                 printf("\nDurum gosteriliyor...\n");
                 printf("\nOzanin adi: %s\nKullanilan calgi: %s\n",ad,calgi);
-                printf("\n--- Temel Nitelikler ---\n\n- Can = %d\n- Tokluk = %d\n- Uyku = %d\n- Hijyen = %d\n- Su Doygunlugu = %d\n- Mental Saglik = %d\n- Mutluluk = %d\n\n",can,tokluk,uyku,hijyen,suDoygunlugu,mentalSaglik,mutluluk);
+                printf("\n--- Temel Nitelikler ---\n\n- Can = %d\n- Tokluk = %d\n- Uyku = %d\n- Hijyen = %d\n- Su Doygunlugu = %d\n- Mental Saglik = %d\n- Mutluluk = %d\n\n- Altin = %d\n- Tecrube Puani: %d\n\n",can,tokluk,uyku,hijyen,suDoygunlugu,mentalSaglik,mutluluk,altin,tecrubePuani);
                 printf("--- Beceriler ---\n\n- Guc = %d\n- Ceviklik = %d\n- Dayaniklilik = %d\n- Karizma = %d\n- Toplayicilik = %d\n\n",guc,ceviklik,dayaniklilik,karizma,toplayicilik);
             } else if (islem == 7) {
                 printf("Program sonlanacak. Emin misiniz?\n\ne -> evet\nh -> hayir\n");
