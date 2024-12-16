@@ -689,9 +689,9 @@ int main()
     int sifaliBitkiBulmaSansi = 0;
     srand(time(NULL)); // rastgele degerler olusturmak icin kullanilir
 
-    printf("********** COCO'NUN MACERALARI **********\n\n");
+    printf("********** OZANIN MACERALARI **********\n\n");
 
-    printf("Coco ozaninin adini giriniz: ");
+    printf("Ozanin adini giriniz: ");
     gets(ad); // Ozanin adi alinir
     ad[0] = toupper(ad[0]); // Ozanin bas harfi buyuk yazilir
 
