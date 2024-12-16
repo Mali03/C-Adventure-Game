@@ -13,7 +13,7 @@ void ormanKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydu
 
         printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
 
-        while (can > 0 && haydutCan > 0) {
+        while (*can > 0 && haydutCan > 0) {
             int kacabilmeIhtimali = 4*ceviklik;
             printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
             scanf(" %c", &savassecim);
@@ -66,7 +66,7 @@ void ormanKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydu
 
         printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
 
-        while (can > 0 && haydutCan > 0) {
+        while (*can > 0 && haydutCan > 0) {
             int kacabilmeIhtimali = 4*ceviklik;
             printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
             scanf(" %c", &savassecim);
@@ -122,7 +122,7 @@ void ormanKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydu
         printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
 
         if (baslayacak == 0) { // Karakter baslar
-            while (can > 0 && haydutCan > 0) {
+            while (*can > 0 && haydutCan > 0) {
                 int kacabilmeIhtimali = 4*ceviklik;
                 printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
                 scanf(" %c", &savassecim);
@@ -171,7 +171,7 @@ void ormanKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydu
                 printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 30 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
             }
         } else { // Haydut baslar
-            while (can > 0 && haydutCan > 0) {
+            while (*can > 0 && haydutCan > 0) {
                 int kacabilmeIhtimali = 4*ceviklik;
                 printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
                 scanf(" %c", &savassecim);
@@ -234,7 +234,7 @@ void kayalikKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int hay
 
         printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
 
-        while (can > 0 && haydutCan > 0) {
+        while (*can > 0 && haydutCan > 0) {
             int kacabilmeIhtimali = 4*ceviklik;
             printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
             scanf(" %c", &savassecim);
@@ -287,7 +287,7 @@ void kayalikKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int hay
 
         printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
 
-        while (can > 0 && haydutCan > 0) {
+        while (*can > 0 && haydutCan > 0) {
             int kacabilmeIhtimali = 4*ceviklik;
             printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
             scanf(" %c", &savassecim);
@@ -343,7 +343,7 @@ void kayalikKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int hay
         printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
 
         if (baslayacak == 0) { // Karakter baslar
-            while (can > 0 && haydutCan > 0) {
+            while (*can > 0 && haydutCan > 0) {
                 int kacabilmeIhtimali = 4*ceviklik;
                 printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
                 scanf(" %c", &savassecim);
@@ -392,7 +392,7 @@ void kayalikKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int hay
                 printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 60 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
             }
         } else { // Haydut baslar
-            while (can > 0 && haydutCan > 0) {
+            while (*can > 0 && haydutCan > 0) {
                 int kacabilmeIhtimali = 4*ceviklik;
                 printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
                 scanf(" %c", &savassecim);
@@ -455,7 +455,7 @@ void vadiKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydut
 
         printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
 
-        while (can > 0 && haydutCan > 0) {
+        while (*can > 0 && haydutCan > 0) {
             int kacabilmeIhtimali = 4*ceviklik;
             printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
             scanf(" %c", &savassecim);
@@ -508,7 +508,7 @@ void vadiKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydut
 
         printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
 
-        while (can > 0 && haydutCan > 0) {
+        while (*can > 0 && haydutCan > 0) {
             int kacabilmeIhtimali = 4*ceviklik;
             printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
             scanf(" %c", &savassecim);
@@ -564,7 +564,7 @@ void vadiKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydut
         printf("\nBir haydutla karsilastin!!!\n\nHaydutun Ozellikleri:\n\n- Haydutun gucu: %d/25\n- Haydutun cevikligi: %d/25\n- Haydutun dayaniklilik: %d/25\n\n", haydutGuc, haydutCeviklik, haydutDayaniklilik);
 
         if (baslayacak == 0) { // Karakter baslar
-            while (can > 0 && haydutCan > 0) {
+            while (*can > 0 && haydutCan > 0) {
                 int kacabilmeIhtimali = 4*ceviklik;
                 printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
                 scanf(" %c", &savassecim);
@@ -613,7 +613,7 @@ void vadiKesfiSavas(int haydutCan, int haydutGuc, int haydutCeviklik, int haydut
                 printf("\nHaydutun uzerinden %d altin ganimet topladin! Koye geri dondun.\nSavas sonucunda 90 tecrube puani kazandin.\n\nToplam altin miktarin: %d\nToplam tecrube puanin: %d\n\n",kazanilanGanimet,*altin,*tecrubePuani);
             }
         } else { // Haydut baslar
-            while (can > 0 && haydutCan > 0) {
+            while (*can > 0 && haydutCan > 0) {
                 int kacabilmeIhtimali = 4*ceviklik;
                 printf("\nCanin: %d | Haydutun cani: %d\n\nk -> kac (kacabilme ihtimalin: %%%d)\ns -> savasa devam et\nSavasta yapilacak islemi girin: ", *can, haydutCan, kacabilmeIhtimali);
                 scanf(" %c", &savassecim);
@@ -1208,7 +1208,7 @@ int main()
         tur++;
     }
 
-    printf("Program sonlandirildi. ");
+    printf("\nProgram sonlandirildi. ");
 
     if (can <= 0)
         printf("%s ozani hayatini kaybetti...",ad);
