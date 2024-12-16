@@ -691,13 +691,20 @@ int main()
 
     printf("********** OZANIN MACERALARI **********\n\n");
 
-    printf("Ozanin adini giriniz: ");
+    printf("Ozaninin adini giriniz: ");
     gets(ad); // Ozanin adi alinir
     ad[0] = toupper(ad[0]); // Ozanin bas harfi buyuk yazilir
 
     printf("%s ozaninin kullandigi calgiyi giriniz: ", ad);
     gets(calgi); // Ozanin calgisi alinir
     calgi[0] = tolower(calgi[0]); // Ozanin calgisinin bas harfi kucuk yazilir
+
+    printf("\n\n%s ozani cocuklugundan beri %s calgisina derin bir baglilik hissetmistir. Babasinin ona hediye ettigi bu %s, adeta hayatinin ve ruhunun bir parcasi haline gelmis, ne zaman zorlansa ona guc vermistir. %s kucuk yaslardan itibaren muzigin sadece bir eglence degil, ayni zamanda bir kurtulus yolu olduguna inanmisti.\n",ad,calgi,calgi,ad);
+    printf("\nHer sabah gunesin ilk isiklariyla uyanir, kasabanin etrafindaki ormanlarda %s calgisiyla melodiler calardi. %s ozaninin melodileri o kadar etkileyiciydi ki, sadece insanlari degil, kuslari ve diger hayvanlari bile derinden etkiliyordu.\n",calgi,ad);
+    printf("\nHer gun yeni bir maceraya atilan %s, haydutlarla karsilasip onlarla savasirdi. Kimi zaman yaralanirdi ve koy halki onu sifahaneye gotururdu. Sifaci, ozel sifali karisimlarla onun yaralarini iyilestirirken, %s, %s calgisiyla sarkilar calar ve soyler, etrafa moral kaynagi olurdu.\n",ad,ad,calgi);
+    printf("\nBazi gunler %s, hana giderdi. Bu han, yorgun gezginlerin bir araya gelip hem dinlendikleri hem de eglendikleri bir yerdi. Insanlar burada yer, icer, sarki soyler ve eglenirdi.\n",ad);
+    printf("\nHan geceleri muzikle yankilanir, kahkahalarla dolu olurdu. Zamanla %s, sadece bir muzisyen degil ayni zamanda bir kahraman olarak gorulmeye basladi. Onun sarkilari, yureklere cesaret veriyor, umutsuz insanlara umut asiliyordu. Gittigi her yerde muzigiyle zorluklari yenerek, insanlarin kalplerini fethediyordu. %s calgisi ise onun en derinden bagli oldugu dostuydu. %s maceralarina devam ederken, nereye giderse gitsin, %s calgisi hep yaninda olacak ve muzigiyle dunyayi daha iyi bir yer haline getirecekti.\n",ad,calgi,calgi);
+    printf("\nBu maceralara tanik olmak icin:");
 
     printf("\n1. Kamp alanina git.\n2. Sifahaneye git.\n3. Hana git.\n4. Maceraya atil.\n5. Seviye atla.\n6. Durumu goster.\n\n7. Oyundan cik.\n\n");
 
