@@ -749,7 +749,7 @@ int main()
             }
         }
 
-        if (tur == 8) {
+        if (tur == 8) { // tur degiskeni uyudugu zaman 0lanir yani tur degeri karakterin uyumadigi gun sayisidir.
             mentalSaglik -= 20;
             mutluluk -= 10;
 
@@ -770,7 +770,7 @@ int main()
             printf("\n4 gun boyunca uyumadigin icin mental sagligin 10/100 oldu.\n");
         }
 
-        if (mentalSaglik == 0 || mutluluk == 0) {
+        if (mentalSaglik == 0) {
             printf("Mental sagligin 0'a dustu. Intihar etmek ister misin? (e/h)");
 
             scanf(" %c",&intihar);
@@ -811,6 +811,7 @@ int main()
                             altin += kazanilan;
                             if (mentalSaglik + 9 >= 100) mentalSaglik = 100; else mentalSaglik += 9;
                             if (mutluluk+7 >= 100) mutluluk = 100; else mutluluk += 7;
+                            tokluk -= 7;
                             uyku -= 10;
                             karizma += 1;
                             printf("Tebrikler!!! Kamp atesinde %s ile calgi calip sarki soyleyerek insanlari etkilemeyi basardin! Kamp atesindeki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 15\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",calgi,(int)(karizma*hijyen/100.0),kazanilan,altin);
@@ -826,6 +827,7 @@ int main()
                                 printf("\n\nHijyen seviyen zaten full tekrar yikanamazsin.\n\nKoy meydanina geri donuldu.\n\n");
                             } else {
                                 hijyen = 100;
+                                tokluk -= 7;
                                 printf("\nNehirde yikanarak hijyen seviyeni fulledin.\n\nKoy meydanina geri donuldu.\n\n");
                             }
                         }
@@ -834,6 +836,7 @@ int main()
                             printf("\n\nUykun olmadigi icin uyuyamadin.\n\nKoy meydanina geri donuldu.\n\n");
                         } else {
                             uyku = 100;
+                            tokluk -= 30;
                             printf("\n\nCadirinda misil misil uyuyarak uykunu fulledin.\n\nKoy meydanina geri donuldu.\n\n");
                         }
                     } else {
@@ -1077,6 +1080,7 @@ int main()
                             altin += kazanilan;
                             if (mentalSaglik + 10 >= 100) mentalSaglik = 100; else mentalSaglik += 10;
                             if (mutluluk + 8 >= 100) mutluluk = 100; else mutluluk += 8;
+                            tokluk -= 7;
                             uyku -= 15;
                             karizma += 1;
                             printf("Tebrikler!!! Handa %s ile sarki soyleyerek insanlari etkilemeyi basardin! Handaki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 20\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",calgi,(int)(karizma*hijyen/100.0),kazanilan,altin);
@@ -1135,18 +1139,39 @@ int main()
                         int haydutDayaniklilik = rand()%3+1;
 
                         ormanKesfiSavas(100,haydutGuc,haydutCeviklik,haydutDayaniklilik,&can,guc,ceviklik,dayaniklilik,&altin,&tecrubePuani);
+
+                        if (mutluluk + 10 >= 100) mutluluk = 100; else mutluluk += 10;
+                        if (uyku - 20 <= 0) uyku = 0; else uyku -= 20;
+                        if (tokluk - 10 <= 0) tokluk = 0; else tokluk -= 10;
+                        if (suDoygunlugu - 15 <= 0) suDoygunlugu = 0; else suDoygunlugu -= 15;
+                        if (hijyen - 10 <= 0) hijyen = 0; else hijyen -= 10;
+
                     } else if (altislem == 3) { // Orta
                         int haydutGuc = rand()%3+4;
                         int haydutCeviklik = rand()%3+4;
                         int haydutDayaniklilik = rand()%3+4;
 
                         kayalikKesfiSavas(100,haydutGuc,haydutCeviklik,haydutDayaniklilik,&can,guc,ceviklik,dayaniklilik,&altin,&tecrubePuani);
+
+                        if (mutluluk + 20 >= 100) mutluluk = 100; else mutluluk += 20;
+                        if (uyku - 30 <= 0) uyku = 0; else uyku -= 30;
+                        if (tokluk - 20 <= 0) tokluk = 0; else tokluk -= 20;
+                        if (suDoygunlugu - 25 <= 0) suDoygunlugu = 0; else suDoygunlugu -= 25;
+                        if (hijyen - 20 <= 0) hijyen = 0; else hijyen -= 20;
+
                     } else if (altislem == 4) { // Zor
                         int haydutGuc = rand()%4+7;
                         int haydutCeviklik = rand()%4+7;
                         int haydutDayaniklilik = rand()%4+7;
 
                         vadiKesfiSavas(100,haydutGuc,haydutCeviklik,haydutDayaniklilik,&can,guc,ceviklik,dayaniklilik,&altin,&tecrubePuani);
+
+                        if (mutluluk + 30 >= 100) mutluluk = 100; else mutluluk += 30;
+                        if (uyku - 40 <= 0) uyku = 0; else uyku -= 40;
+                        if (tokluk - 30 <= 0) tokluk = 0; else tokluk -= 30;
+                        if (suDoygunlugu - 35 <= 0) suDoygunlugu = 0; else suDoygunlugu -= 35;
+                        if (hijyen - 30 <= 0) hijyen = 0; else hijyen -= 30;
+
                     } else {
                         printf("Hatali islem secildi.\n");
                     }
