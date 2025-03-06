@@ -691,7 +691,7 @@ int main()
 
     printf("********** OZANIN MACERALARI **********\n\n");
 
-    printf("Ozaninin adini giriniz: ");
+    printf("Ozanin adini giriniz: ");
     gets(ad); // Ozanin adi alinir
     ad[0] = toupper(ad[0]); // Ozanin bas harfi buyuk yazilir
 
@@ -699,11 +699,11 @@ int main()
     gets(calgi); // Ozanin calgisi alinir
     calgi[0] = tolower(calgi[0]); // Ozanin calgisinin bas harfi kucuk yazilir
 
-    printf("\n\n%s ozani cocuklugundan beri %s calgisina derin bir baglilik hissetmistir. Babasinin ona hediye ettigi bu %s, adeta hayatinin ve ruhunun bir parcasi haline gelmis, ne zaman zorlansa ona guc vermistir. %s kucuk yaslardan itibaren muzigin sadece bir eglence degil, ayni zamanda bir kurtulus yolu olduguna inanmisti.\n",ad,calgi,calgi,ad);
+    printf("\n%s ozani cocuklugundan beri %s calgisina derin bir baglilik hissetmistir. Babasinin ona hediye ettigi bu %s, adeta hayatinin ve ruhunun bir parcasi haline gelmis, ne zaman zorlansa ona guc vermistir. %s kucuk yaslardan itibaren muzigin sadece bir eglence degil, ayni zamanda bir kurtulus yolu olduguna inanmisti.\n",ad,calgi,calgi,ad);
     printf("\nHer sabah gunesin ilk isiklariyla uyanir, kasabanin etrafindaki ormanlarda %s calgisiyla melodiler calardi. %s ozaninin melodileri o kadar etkileyiciydi ki, sadece insanlari degil, kuslari ve diger hayvanlari bile derinden etkiliyordu.\n",calgi,ad);
     printf("\nHer gun yeni bir maceraya atilan %s, haydutlarla karsilasip onlarla savasirdi. Kimi zaman yaralanirdi ve koy halki onu sifahaneye gotururdu. Sifaci, ozel sifali karisimlarla onun yaralarini iyilestirirken, %s, %s calgisiyla sarkilar calar ve soyler, etrafa moral kaynagi olurdu.\n",ad,ad,calgi);
     printf("\nBazi gunler %s, hana giderdi. Bu han, yorgun gezginlerin bir araya gelip hem dinlendikleri hem de eglendikleri bir yerdi. Insanlar burada yer, icer, sarki soyler ve eglenirdi.\n",ad);
-    printf("\nHan geceleri muzikle yankilanir, kahkahalarla dolu olurdu. Zamanla %s, sadece bir muzisyen degil ayni zamanda bir kahraman olarak gorulmeye basladi. Onun sarkilari, yureklere cesaret veriyor, umutsuz insanlara umut asiliyordu. Gittigi her yerde muzigiyle zorluklari yenerek, insanlarin kalplerini fethediyordu. %s calgisi ise onun en derinden bagli oldugu dostuydu. %s maceralarina devam ederken, nereye giderse gitsin, %s calgisi hep yaninda olacak ve muzigiyle dunyayi daha iyi bir yer haline getirecekti.\n",ad,calgi,ad,calgi);
+    printf("\nHan geceleri muzikle yankilanir, kahkahalarla dolu olurdu. Zamanla %s, sadece bir muzisyen degil ayni zamanda bir kahraman olarak gorulmeye basladi. Onun sarkilari, yureklere cesaret veriyor, umutsuz insanlara umut asiliyordu. Gittigi her yerde muzigiyle zorluklari yenerek, insanlarin kalplerini fethediyordu. %s calgisi ise onun en derinden bagli oldugu dostuydu. %s maceralarina devam ederken, nereye giderse gitsin, %s calgisi hep yaninda olacak ve muzigiyle dunyayi daha iyi bir yer haline getirecekti.\n",ad,calgi,calgi);
     printf("\nBu maceralara tanik olmak icin:");
 
     printf("\n1. Kamp alanina git.\n2. Sifahaneye git.\n3. Hana git.\n4. Maceraya atil.\n5. Seviye atla.\n6. Durumu goster.\n\n7. Oyundan cik.\n\n");
@@ -776,6 +776,7 @@ int main()
             scanf(" %c",&intihar);
             if (intihar == 'e') {
                 printf("\nIntihar edildi.\n\n");
+                can = 0;
                 break;
             } else {
                 if (mentalSaglik == 0)
@@ -811,7 +812,6 @@ int main()
                             altin += kazanilan;
                             if (mentalSaglik + 9 >= 100) mentalSaglik = 100; else mentalSaglik += 9;
                             if (mutluluk+7 >= 100) mutluluk = 100; else mutluluk += 7;
-                            tokluk -= 7;
                             uyku -= 10;
                             karizma += 1;
                             printf("Tebrikler!!! Kamp atesinde %s ile calgi calip sarki soyleyerek insanlari etkilemeyi basardin! Kamp atesindeki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 15\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",calgi,(int)(karizma*hijyen/100.0),kazanilan,altin);
@@ -827,7 +827,6 @@ int main()
                                 printf("\n\nHijyen seviyen zaten full tekrar yikanamazsin.\n\nKoy meydanina geri donuldu.\n\n");
                             } else {
                                 hijyen = 100;
-                                tokluk -= 7;
                                 printf("\nNehirde yikanarak hijyen seviyeni fulledin.\n\nKoy meydanina geri donuldu.\n\n");
                             }
                         }
@@ -1080,7 +1079,6 @@ int main()
                             altin += kazanilan;
                             if (mentalSaglik + 10 >= 100) mentalSaglik = 100; else mentalSaglik += 10;
                             if (mutluluk + 8 >= 100) mutluluk = 100; else mutluluk += 8;
-                            tokluk -= 7;
                             uyku -= 15;
                             karizma += 1;
                             printf("Tebrikler!!! Handa %s ile sarki soyleyerek insanlari etkilemeyi basardin! Handaki insanlar sana %d altin bahsis verdi.\nToplam kazandigin altin: %d\nKazandigin tecrube puani: 20\nToplam altin miktari: %d\n\nKoy meydanina geri donuldu.\n\n",calgi,(int)(karizma*hijyen/100.0),kazanilan,altin);
@@ -1219,8 +1217,8 @@ int main()
 
                 printf("\nDurum gosteriliyor...\n");
                 printf("\nOzanin adi: %s\nKullanilan calgi: %s\n",ad,calgi);
-                printf("\n--- Temel Nitelikler ---\n\n- Can = %d\n- Tokluk = %d\n- Uyku = %d\n- Hijyen = %d\n- Su Doygunlugu = %d\n- Mental Saglik = %d\n- Mutluluk = %d\n\n- Altin = %d\n- Tecrube Puani: %d\n\n",can,tokluk,uyku,hijyen,suDoygunlugu,mentalSaglik,mutluluk,altin,tecrubePuani);
-                printf("--- Beceriler ---\n\n- Guc = %d\n- Ceviklik = %d\n- Dayaniklilik = %d\n- Karizma = %d\n- Toplayicilik = %d\n\n",guc,ceviklik,dayaniklilik,karizma,toplayicilik);
+                printf("\n--- Temel Nitelikler ---\n\n- Can = %d/100\n- Tokluk = %d/100\n- Uyku = %d/100\n- Hijyen = %d/100\n- Su Doygunlugu = %d/100\n- Mental Saglik = %d/100\n- Mutluluk = %d/100\n\n- Altin = %d\n- Tecrube Puani: %d/100\n\n",can,tokluk,uyku,hijyen,suDoygunlugu,mentalSaglik,mutluluk,altin,tecrubePuani);
+                printf("--- Beceriler ---\n\n- Guc = %d/25\n- Ceviklik = %d/25\n- Dayaniklilik = %d/25\n- Karizma = %d/25\n- Toplayicilik = %d/25\n\n",guc,ceviklik,dayaniklilik,karizma,toplayicilik);
             } else if (islem == 7) {
                 printf("Program sonlanacak. Emin misiniz?\n\ne -> evet\nh -> hayir\n");
                 scanf(" %c",&eminmi);
